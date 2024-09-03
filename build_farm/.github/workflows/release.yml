@@ -5,6 +5,7 @@ on:
     branches:
       - master
       - feature/github_actions
+      - task_1_build_farm
 
 jobs:
   build:
