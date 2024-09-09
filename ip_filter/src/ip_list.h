@@ -16,6 +16,7 @@ public:
     void SortInReverseLexicographicOrder();
 
     friend std::istream& operator>>(std::istream& istream, IPList& ipList);
+    friend std::ostream& operator<<(std::ostream& ostream, IPList& ipList);
 
 private:
 

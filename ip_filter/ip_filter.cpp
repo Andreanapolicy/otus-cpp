@@ -7,6 +7,9 @@ int main(int, char const *[])
     {
         ip_address::IPList ip_pool;
         std::cin >> ip_pool;
+
+        ip_pool.SortInReverseLexicographicOrder();
+        std::cout << ip_pool;
     }
     catch(const std::exception &e)
     {
