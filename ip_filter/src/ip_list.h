@@ -26,9 +26,9 @@ public:
     friend std::istream& operator>>(std::istream& istream, IPList& ipList);
     friend std::ostream& operator<<(std::ostream& ostream, IPList& ipList);
 
-    IPList FilterByFirstByteIs1();
-    IPList FilterByFirstByteIs46AndSecondIs70();
-    IPList FilterByAnyByteIs46();
+    IPList FilterByFirstByte(int byte);
+    IPList FilterByFirstTwoByte(int first, int second);
+    IPList FilterByAnyByte(int byte);
 
 private:
     IPList SortBy(const Comparator& comparator);

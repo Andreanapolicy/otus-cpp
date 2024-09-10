@@ -62,28 +62,28 @@ IPList IPList::SortInReverseLexicographicOrder()
     });
 }
 
-IPList IPList::FilterByFirstByteIs1()
+IPList IPList::FilterByFirstByte(int byte)
 {
-    return FilterBy([](const IP& ip){
-        return std::stoi(ip.at(0)) == 1;
+    return FilterBy([byte](const IP& ip){
+        return std::stoi(ip.at(0)) == byte;
     });
 }
 
-IPList IPList::FilterByFirstByteIs46AndSecondIs70()
+IPList IPList::FilterByFirstTwoByte(int first, int second)
 {
-    return FilterBy([](const IP& ip){
-        return std::stoi(ip.at(0)) == 46 
-            && std::stoi(ip.at(1)) == 70;
+    return FilterBy([first, second](const IP& ip){
+        return std::stoi(ip.at(0)) == first 
+            && std::stoi(ip.at(1)) == second;
     });
 }
 
-IPList IPList::FilterByAnyByteIs46()
+IPList IPList::FilterByAnyByte(int byte)
 {
-    return FilterBy([](const IP& ip){
-        return std::stoi(ip.at(0)) == 46 
-            || std::stoi(ip.at(1)) == 46 
-            || std::stoi(ip.at(2)) == 46 
-            || std::stoi(ip.at(3)) == 46;
+    return FilterBy([byte](const IP& ip){
+        return std::stoi(ip.at(0)) == byte 
+            || std::stoi(ip.at(1)) == byte 
+            || std::stoi(ip.at(2)) == byte 
+            || std::stoi(ip.at(3)) == byte;
     });
 }
 
