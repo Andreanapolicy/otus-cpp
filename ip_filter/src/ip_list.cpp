@@ -6,13 +6,6 @@ namespace ip_address
 
 namespace
 {
-
-// ("",  '.') -> [""]
-// ("11", '.') -> ["11"]
-// ("..", '.') -> ["", "", ""]
-// ("11.", '.') -> ["11", ""]
-// (".11", '.') -> ["", "11"]
-// ("11.22", '.') -> ["11", "22"]
 IP split(const std::string& line, char delimeter)
 {
     IP ip;
@@ -59,13 +52,55 @@ std::ostream& operator<<(std::ostream& ostream, IPList& ipList)
     return ostream;
 }
 
-void IPList::SortInReverseLexicographicOrder()
+IPList IPList::SortInReverseLexicographicOrder()
 {
-    std::sort(m_data.begin(), m_data.end(), [](const IP& lhs, const IP& rhs){
+    return SortBy([](const IP& lhs, const IP& rhs){
         return std::stoi(lhs.at(0)) > std::stoi(rhs.at(0)) 
             || std::stoi(lhs.at(1)) > std::stoi(rhs.at(1)) 
             || std::stoi(lhs.at(2)) > std::stoi(rhs.at(2)) 
             || std::stoi(lhs.at(3)) > std::stoi(rhs.at(3));
     });
+}
+
+IPList IPList::FilterByFirstByteIs1()
+{
+    return FilterBy([](const IP& ip){
+        return std::stoi(ip.at(0)) == 1;
+    });
+}
+
+IPList IPList::FilterByFirstByteIs46AndSecondIs70()
+{
+    return FilterBy([](const IP& ip){
+        return std::stoi(ip.at(0)) == 46 
+            && std::stoi(ip.at(1)) == 70;
+    });
+}
+
+IPList IPList::FilterByAnyByteIs46()
+{
+    return FilterBy([](const IP& ip){
+        return std::stoi(ip.at(0)) == 46 
+            || std::stoi(ip.at(1)) == 46 
+            || std::stoi(ip.at(2)) == 46 
+            || std::stoi(ip.at(3)) == 46;
+    });
+}
+
+IPList IPList::SortBy(const Comparator& comparator)
+{
+    IPList newIpList(*this);
+    
+    std::sort(newIpList.m_data.begin(), newIpList.m_data.end(), comparator);
+
+    return newIpList;
+}
+
+IPList IPList::FilterBy(const FilterFn& filterFn)
+{
+    IPList newIpList;
+    std::copy_if(m_data.begin(), m_data.end(), std::back_inserter(newIpList.m_data), filterFn);
+
+    return newIpList;
 }
 }
