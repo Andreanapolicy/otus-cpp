@@ -7,32 +7,29 @@
 namespace ip_address
 {
 
-using IP = std::vector<std::string>;
+using IP = std::vector<int>;
 using Data = std::vector<IP>;
 
 class IPList
 {
-using Comparator = std::function<bool(const IP& lhs, const IP& rhs)>;
 using FilterFn = std::function<bool(const IP& ip)>;
 
 public:
     IPList() = default;
     IPList(const IPList&) = default;
-    IPList(Data&& data) : m_data{ std::move(data) } {};
 
     [[nodiscard]] bool Empty() const;
-    IPList SortInReverseLexicographicOrder();
+    void SortInReverseLexicographicOrder();
 
     friend std::istream& operator>>(std::istream& istream, IPList& ipList);
-    friend std::ostream& operator<<(std::ostream& ostream, IPList& ipList);
+    friend std::ostream& operator<<(std::ostream& ostream, const IPList& ipList);
 
     IPList FilterByFirstByte(int byte);
     IPList FilterByFirstTwoByte(int first, int second);
     IPList FilterByAnyByte(int byte);
 
 private:
-    IPList SortBy(const Comparator& comparator);
-    IPList FilterBy(const FilterFn& filterFn);
+    IPList FilterBy(FilterFn filterFn);
 
     Data m_data;
 };

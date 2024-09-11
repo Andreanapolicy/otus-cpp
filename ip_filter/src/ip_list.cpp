@@ -1,14 +1,15 @@
 #include "ip_list.h"
 #include <algorithm>
+#include <tuple>
 
 namespace ip_address
 {
 
 namespace
 {
-IP split(const std::string& line, char delimeter)
+std::vector<std::string> split(const std::string& line, char delimeter)
 {
-    IP ip;
+    std::vector<std::string> ip;
 
     auto start = 0;
     auto stop = line.find_first_of(delimeter);
@@ -33,70 +34,59 @@ bool IPList::Empty() const
 
 std::istream& operator>>(std::istream& istream, IPList& ipList)
 {
-    for(std::string line; std::getline(std::cin, line);)
+    for(std::string line; std::getline(std::cin, line); !line.empty())
     {
         auto ip = split(line, '\t');
-        ipList.m_data.push_back(split(ip.at(0), '.'));
+        auto realIp = split(ip.at(0), '.');
+        ipList.m_data.push_back({std::stoi(realIp[0]), std::stoi(realIp[1]), std::stoi(realIp[2]), std::stoi(realIp[3])});
     }
 
     return istream;
 }
 
-std::ostream& operator<<(std::ostream& ostream, IPList& ipList)
+std::ostream& operator<<(std::ostream& ostream, const IPList& ipList)
 {
     for(const auto& ip : ipList.m_data)
     {
-        ostream << ip.at(0) << '.' << ip.at(1) << '.' << ip.at(2) << '.' << ip.at(3) << std::endl;
+        ostream << ip.at(0) << '.' << ip.at(1) << '.' << ip.at(2) << '.' << ip.at(3) << '\n';
     }
 
     return ostream;
 }
 
-IPList IPList::SortInReverseLexicographicOrder()
+void IPList::SortInReverseLexicographicOrder()
 {
-    return SortBy([](const IP& lhs, const IP& rhs){
-        return std::stoi(lhs.at(0)) > std::stoi(rhs.at(0)) 
-            || std::stoi(lhs.at(1)) > std::stoi(rhs.at(1)) 
-            || std::stoi(lhs.at(2)) > std::stoi(rhs.at(2)) 
-            || std::stoi(lhs.at(3)) > std::stoi(rhs.at(3));
+    std::sort(m_data.begin(), m_data.end(), [](const IP& lhs, const IP& rhs) {
+        return std::tie(lhs.at(0), lhs.at(1), lhs.at(2), lhs.at(3)) > std::tie(rhs.at(0), rhs.at(1), rhs.at(2), rhs.at(3));
     });
 }
 
 IPList IPList::FilterByFirstByte(int byte)
 {
     return FilterBy([byte](const IP& ip){
-        return std::stoi(ip.at(0)) == byte;
+        return ip.at(0) == byte;
     });
 }
 
 IPList IPList::FilterByFirstTwoByte(int first, int second)
 {
     return FilterBy([first, second](const IP& ip){
-        return std::stoi(ip.at(0)) == first 
-            && std::stoi(ip.at(1)) == second;
+        return ip.at(0) == first 
+            && ip.at(1) == second;
     });
 }
 
 IPList IPList::FilterByAnyByte(int byte)
 {
     return FilterBy([byte](const IP& ip){
-        return std::stoi(ip.at(0)) == byte 
-            || std::stoi(ip.at(1)) == byte 
-            || std::stoi(ip.at(2)) == byte 
-            || std::stoi(ip.at(3)) == byte;
+        return ip.at(0) == byte 
+            || ip.at(1) == byte 
+            || ip.at(2) == byte 
+            || ip.at(3) == byte;
     });
 }
 
-IPList IPList::SortBy(const Comparator& comparator)
-{
-    IPList newIpList(*this);
-    
-    std::sort(newIpList.m_data.begin(), newIpList.m_data.end(), comparator);
-
-    return newIpList;
-}
-
-IPList IPList::FilterBy(const FilterFn& filterFn)
+IPList IPList::FilterBy(FilterFn filterFn)
 {
     IPList newIpList;
     std::copy_if(m_data.begin(), m_data.end(), std::back_inserter(newIpList.m_data), filterFn);

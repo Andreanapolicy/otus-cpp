@@ -9,7 +9,7 @@ int main(int, char const *[])
         ip_address::IPList ip_pool;
         std::cin >> ip_pool;
 
-        ip_pool = ip_pool.SortInReverseLexicographicOrder();
+        ip_pool.SortInReverseLexicographicOrder();
         std::cout << ip_pool;
         {
             auto ip_pool_by_first_byte_is1 = ip_pool.FilterByFirstByte(1);
