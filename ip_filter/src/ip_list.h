@@ -18,7 +18,8 @@ public:
     IPList() = default;
     IPList(const IPList&) = default;
 
-    [[nodiscard]] bool Empty() const;
+    [[nodiscard]] bool Empty() const { return m_data.empty(); }
+    [[nodiscard]] int Count() const { return m_data.size(); }
     void SortInReverseLexicographicOrder();
 
     friend std::istream& operator>>(std::istream& istream, IPList& ipList);

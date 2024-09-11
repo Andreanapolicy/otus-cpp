@@ -27,11 +27,6 @@ std::vector<std::string> split(const std::string& line, char delimeter)
 }
 }
 
-bool IPList::Empty() const
-{
-    return m_data.empty();
-}
-
 std::istream& operator>>(std::istream& istream, IPList& ipList)
 {
     for(std::string line; std::getline(istream, line); !line.empty())
