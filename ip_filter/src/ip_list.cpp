@@ -34,7 +34,7 @@ bool IPList::Empty() const
 
 std::istream& operator>>(std::istream& istream, IPList& ipList)
 {
-    for(std::string line; std::getline(std::cin, line); !line.empty())
+    for(std::string line; std::getline(istream, line); !line.empty())
     {
         auto ip = split(line, '\t');
         auto realIp = split(ip.at(0), '.');
