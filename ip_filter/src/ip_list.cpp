@@ -43,7 +43,7 @@ std::ostream& operator<<(std::ostream& ostream, const IPList& ipList)
 {
     for(const auto& ip : ipList.m_data)
     {
-        ostream << ip.at(0) << '.' << ip.at(1) << '.' << ip.at(2) << '.' << ip.at(3) << '\n';
+        ostream << ip.at(0) << '.' << ip.at(1) << '.' << ip.at(2) << '.' << ip.at(3) << std::endl;
     }
 
     return ostream;
