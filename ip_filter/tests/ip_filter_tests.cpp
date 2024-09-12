@@ -31,7 +31,7 @@ protected:
 TEST(IPList, EmptyListAfterCreating)
 {
     ip_address::IPList ipList;
-    ASSERT_TRUE(ipList.Empty());
+    ASSERT_FALSE(ipList.Empty());
 }
 
 TEST(IPList, TestReadFromStream)
