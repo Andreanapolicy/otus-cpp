@@ -54,6 +54,46 @@ TEST_F(IPListTest, TestWriteToStream)
     ASSERT_EQ(oss.str(), "10.10.10.10\n2.2.100.30\n1.2.100.30\n46.70.100.30\n46.1.100.30\n");
 }
 
+TEST_F(IPListTest, TestSort)
+{
+    std::ostringstream oss;
+    
+    ipList.SortInReverseLexicographicOrder();
+    oss << ipList;
+
+    ASSERT_EQ(oss.str(), "46.70.100.30\n46.1.100.30\n10.10.10.10\n2.2.100.30\n1.2.100.30\n");
+}
+
+TEST_F(IPListTest, TestFilterByFirstByte)
+{
+    std::ostringstream oss;
+    
+    const auto filteredIp = ipList.FilterByFirstByte(1);
+    oss << filteredIp;
+
+    ASSERT_EQ(oss.str(), "1.2.100.30\n");
+}
+
+TEST_F(IPListTest, TestFilterByFirstTwoBytes)
+{
+    std::ostringstream oss;
+    
+    const auto filteredIp = ipList.FilterByFirstTwoByte(46, 70);
+    oss << filteredIp;
+
+    ASSERT_EQ(oss.str(), "46.70.100.30\n");
+}
+
+TEST_F(IPListTest, TestFilterByAnyByte)
+{
+    std::ostringstream oss;
+    
+    const auto filteredIp = ipList.FilterByAnyByte(1);
+    oss << filteredIp;
+
+    ASSERT_EQ(oss.str(), "1.2.100.30\n46.1.100.30\n");
+}
+
 int main(int argc, char **argv)
 {
     testing::InitGoogleTest(&argc, argv);
