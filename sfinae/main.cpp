@@ -4,17 +4,36 @@
 #include <iostream>
 
 template <typename T>
-typename std::enable_if<std::is_integral<T>::value, void>::type
-print_ip(T number)
-{
-    std::cout << number << std::endl;
-}
-
-template <typename T>
 typename std::enable_if<std::is_same_v<T, std::string>, void>::type
 print_ip(const T& str)
 {
     std::cout << str << std::endl;
+}
+
+template <typename T>
+typename std::enable_if<std::is_integral<T>::value, void>::type
+print_ip(T number)
+{
+    const auto size = sizeof(T);
+    
+    const auto value = static_cast<std::make_unsigned_t<T>>(number);
+
+    if (size == 1)
+    {
+        print_ip(std::to_string(static_cast<std::uint16_t>(value)));
+        return;
+    }
+
+    std::string result;
+    for (auto i = size - 1; i > 0; i--)
+    {
+        const auto byte = static_cast<uint8_t>(value >> 0 >> 8 * i);        
+        result += std::to_string(static_cast<std::uint16_t>(byte)) + ".";
+    }
+    
+    const auto byte = static_cast<uint8_t>(value);
+    result += std::to_string(static_cast<std::uint16_t>(byte));
+    print_ip(result);
 }
 
 template <typename T>
@@ -27,13 +46,14 @@ print_ip(const T& container)
     {
         return;
     }
-    std::string s = std::to_string(*(container.begin()));
+
+    auto result = std::to_string(*(container.begin()));
     for (auto it = ++(container.cbegin()); it != container.cend(); it++)
     {
-        s += "." + std::to_string(*(it));
+        result += "." + std::to_string(*(it));
     }
 
-    print_ip(s);
+    print_ip(result);
 }
 
 int main()
