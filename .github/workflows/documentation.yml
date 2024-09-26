@@ -13,7 +13,7 @@ jobs:
     - name: Doxygen Action   
       uses: mattnotmitt/doxygen-action@v1.9.8
       with:
-          doxyfile-path: ${{ env.WORK_DIR }}/Doxyfile
+          doxyfile-path: ./Doxyfile
           working-directory: ${{ env.WORK_DIR }}
     - name: Deployment  
       uses: peaceiris/actions-gh-pages@v4
