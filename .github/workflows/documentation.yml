@@ -1,0 +1,26 @@
+name: 'Documentation'
+
+on: [push]
+        
+env:
+  WORK_DIR: ./sfinae
+
+jobs:
+  build-documentation:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Doxygen Action   
+      uses: mattnotmitt/doxygen-action@v1.9.8
+      with:
+          doxyfile-path: ./${{ env.WORK_DIR }}/doc/Doxyfile
+          working-directory: ./${{ env.WORK_DIR }}
+    - name: Deployment  
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./${{ env.WORK_DIR }}/doc/html/
+        enable_jekyll: false
+        allow_empty_commit: false
+        force_orphan: true
+        publish_branch: master
