@@ -3,7 +3,7 @@ name: 'Documentation'
 on: [push]
         
 env:
-  WORK_DIR: ./sfinae
+  WORK_DIR: ./editor
 
 jobs:
   build-documentation:
