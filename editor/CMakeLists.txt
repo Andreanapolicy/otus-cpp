@@ -7,7 +7,16 @@ project(editor VERSION ${PROJECT_VERSION})
 
 add_executable(editor main.cpp)
 
-set_target_properties(editor PROPERTIES
+#file(GLOB_RECURSE editor_lib_SRC CONFIGURE_DEPENDS "*.h" "*.cpp")
+file(GLOB_RECURSE ENDF6_SRC ${PROJECT_SOURCE_DIR} *.cpp)
+
+add_library(editor_src ${ENDF6_SRC})
+
+target_link_libraries(editor
+    editor_src
+)
+
+set_target_properties(editor editor_src PROPERTIES
     CXX_STANDARD 20
     CXX_STANDARD_REQUIRED ON
 )
@@ -19,6 +28,11 @@ target_include_directories(editor
 target_compile_options(editor PRIVATE
     -Wall -Wextra -pedantic -Werror
 )
+
+target_compile_options(editor_src PRIVATE
+    -Wall -Wextra -pedantic -Werror
+)
+
 install(TARGETS editor RUNTIME DESTINATION bin)
 
 set(CPACK_GENERATOR DEB)
