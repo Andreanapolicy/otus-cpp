@@ -5,6 +5,10 @@
 #include <functional>
 #include <vector>
 
+#ifndef DIAGRAMS_IDocument_H
+#define DIAGRAMS_IDocument_H
+#endif
+
 namespace model
 {
 class IDocument

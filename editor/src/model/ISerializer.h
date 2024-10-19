@@ -2,6 +2,10 @@
 #include "IDocument_fwd.h"
 #include <filesystem>
 
+#ifndef DIAGRAMS_ISerializer_H
+#define DIAGRAMS_ISerializer_H
+#endif
+
 namespace model
 {
 

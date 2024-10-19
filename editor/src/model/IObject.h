@@ -2,6 +2,10 @@
 #include "ObjectType.h"
 #include "UUID.h"
 
+#ifndef DIAGRAMS_IObject_H
+#define DIAGRAMS_IObject_H
+#endif
+
 namespace model
 {
 class IObject
