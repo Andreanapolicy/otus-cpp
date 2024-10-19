@@ -1,4 +1,3 @@
-#pragma once
 #include "ObjectView.h"
 #include "../controller/IDocumentController.h"
 #include "../model/IObject.h"

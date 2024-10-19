@@ -7,11 +7,12 @@ namespace model
 void Document::AddObject(ObjectType type)
 {
 	const auto object = ObjectFactory::CreateObject(type);
-	m_objectStorage.emplace(object->GetUUID(), object);
+	auto uuid = object->GetUUID();
+	//m_objectStorage.emplace(uuid, std::move(object));
 
 	if (m_onChange)
 	{
-		m_onChange(object->GetUUID());
+		m_onChange(uuid);
 	}
 }
 
@@ -36,12 +37,12 @@ IObject& Document::GetObject(UUID uuid) const
 	return *(it->second);
 }
 
-std::vector<const IObject&> Document::GetAllObjects() const
+std::vector<UUID> Document::GetAllUUIDs() const
 {
-	return std::vector<const IObject&>(); // fill vector from map by IObject references;
+	return std::vector<UUID>(); // fill vector from map by IObject references;
 }
 
-void Document::DoOnChange(std::function<void(UUID)>& onChange)
+void Document::DoOnChange(std::function<void(UUID)> onChange)
 {
 	m_onChange = onChange;
 }

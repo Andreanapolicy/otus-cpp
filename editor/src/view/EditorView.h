@@ -4,13 +4,12 @@
 #include "../model/IDocument_fwd.h"
 #include "../model/ObjectType.h"
 #include "../model/UUID.h"
+#include "ObjectView.h"
 #include <memory>
 #include <vector>
 
 namespace view
 {
-class ObjectView;
-
 class EditorView
 {
 public:
@@ -25,9 +24,9 @@ private:
 	void OnAddObject(model::ObjectType type);
 	void Rebuild();
 
-	controller::IEditorControllerUniquePtr m_editorController;
-	controller::IDocumentControllerUniquePtr m_documentController;
 	model::IDocumentUniquePtr m_document;
+	controller::IDocumentControllerUniquePtr m_documentController;
+	controller::IEditorControllerUniquePtr m_editorController;
 	std::vector<std::unique_ptr<ObjectView>> m_objectViews;
 };
 } // namespace view

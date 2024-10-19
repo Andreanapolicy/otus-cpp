@@ -1,4 +1,3 @@
-#pragma once
 #include "EditorView.h"
 #include "../controller/DocumentController.h"
 #include "../controller/EditorController.h"
@@ -18,7 +17,7 @@ EditorView::EditorView(
 	// draw and start + loop
 }
 
-void EditorView::OnChange(model::UUID uuid)
+void EditorView::OnChange(model::UUID)
 {
 	// look for all objects in vector
 	// look for new uuid and add objects views + subscribe

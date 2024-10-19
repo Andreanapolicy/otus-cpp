@@ -1,5 +1,6 @@
 #pragma once
 #include "IDocument.h"
+#include "IObject.h"
 #include <memory>
 #include <unordered_map>
 
@@ -16,14 +17,14 @@ public:
 	Document operator=(const Document&) = delete;
 	Document operator=(Document&&) = delete;
 
-	[[nodiscard]] void AddObject(ObjectType type) override;
+	void AddObject(ObjectType type) override;
 	void DeleteObject(UUID uuid) override;
 	IObject& GetObject(UUID uuid) const override;
-	std::vector<const IObject&> GetAllObjects() const;
-	void DoOnChange(std::function<void(UUID)>& onChange) override;
+	std::vector<UUID> GetAllUUIDs() const;
+	void DoOnChange(std::function<void(UUID)> onChange) override;
 
 private:
 	std::unordered_map<UUID, std::unique_ptr<IObject>> m_objectStorage;
-	std::function<void(UUID)>& m_onChange;
+	std::function<void(UUID)> m_onChange;
 };
 } // namespace model
