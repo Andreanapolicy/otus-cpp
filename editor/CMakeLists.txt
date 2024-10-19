@@ -8,7 +8,7 @@ project(editor VERSION ${PROJECT_VERSION})
 add_executable(editor main.cpp)
 
 #file(GLOB_RECURSE editor_lib_SRC CONFIGURE_DEPENDS "*.h" "*.cpp")
-file(GLOB_RECURSE ENDF6_SRC ${PROJECT_SOURCE_DIR} *.cpp)
+file(GLOB_RECURSE ENDF6_SRC ${PROJECT_SOURCE_DIR} *.h *.cpp)
 
 add_library(editor_src ${ENDF6_SRC})
 
