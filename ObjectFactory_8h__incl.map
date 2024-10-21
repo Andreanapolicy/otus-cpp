@@ -1,0 +1,13 @@
+<map id="src/model/ObjectFactory.h" name="src/model/ObjectFactory.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="66,5,239,31"/>
+<area shape="rect" id="Node000002" href="$IObject_8h.html" title=" " alt="" coords="69,79,143,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="147,33,124,67,120,64,143,30"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="167,79,234,105"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="163,30,186,64,182,67,158,33"/>
+<area shape="rect" id="Node000003" href="$ObjectType_8h.html" title=" " alt="" coords="5,153,103,178"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="100,106,74,142,70,138,95,103"/>
+<area shape="rect" id="Node000004" href="$UUID_8h.html" title=" " alt="" coords="127,153,192,178"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="117,103,143,138,139,142,113,106"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="133,226,186,252"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="162,179,162,211,157,211,157,179"/>
+</map>

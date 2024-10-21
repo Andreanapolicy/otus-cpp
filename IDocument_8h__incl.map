@@ -1,0 +1,15 @@
+<map id="src/model/IDocument.h" name="src/model/IDocument.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="208,5,363,31"/>
+<area shape="rect" id="Node000002" href="$IObject__fwd_8h.html" title=" " alt="" coords="5,79,107,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="247,34,110,77,108,71,246,29"/>
+<area shape="rect" id="Node000003" href="$ObjectType_8h.html" title=" " alt="" coords="131,79,229,105"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="269,34,212,72,209,68,266,29"/>
+<area shape="rect" id="Node000004" href="$UUID_8h.html" title=" " alt="" coords="253,79,318,105"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="288,31,288,63,283,63,283,31"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="341,79,419,105"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="303,29,354,67,350,72,300,34"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="443,79,501,105"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="318,29,430,72,428,77,316,34"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="259,153,312,178"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="288,105,288,137,283,137,283,105"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="src/model/JSONSerializer.h" name="src/model/JSONSerializer.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="38,5,220,31"/>
+<area shape="rect" id="Node000002" href="$ISerializer_8h.html" title=" " alt="" coords="85,79,173,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="132,31,132,63,126,63,126,31"/>
+<area shape="rect" id="Node000003" href="$IDocument__fwd_8h.html" title=" " alt="" coords="5,153,128,178"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="121,107,89,142,85,139,117,103"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="152,153,232,178"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="142,103,173,139,169,142,138,107"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="33,226,100,252"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="69,179,69,211,64,211,64,179"/>
+</map>

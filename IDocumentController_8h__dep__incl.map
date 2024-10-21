@@ -1,0 +1,13 @@
+<map id="src/controller/IDocumentController.h" name="src/controller/IDocumentController.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="250,5,413,46"/>
+<area shape="rect" id="Node000002" href="$DocumentController_8h.html" title=" " alt="" coords="110,94,334,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="294,57,240,96,237,91,291,53"/>
+<area shape="rect" id="Node000006" href="$ObjectView_8cpp.html" title=" " alt="" coords="358,94,523,120"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="372,53,425,91,422,96,369,57"/>
+<area shape="rect" id="Node000003" href="$main_8cpp.html" title=" " alt="" coords="5,168,79,193"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="178,128,74,170,72,165,176,123"/>
+<area shape="rect" id="Node000004" href="$DocumentController_8cpp.html" title=" " alt="" coords="103,168,341,193"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="225,135,225,167,219,167,219,135"/>
+<area shape="rect" id="Node000005" href="$EditorView_8cpp.html" title=" " alt="" coords="366,168,526,193"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="275,122,409,165,407,170,274,127"/>
+</map>

@@ -1,0 +1,27 @@
+<map id="src/model/IObject_fwd.h" name="src/model/IObject_fwd.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="445,5,607,31"/>
+<area shape="rect" id="Node000002" href="$IDocument_8h.html" title=" " alt="" coords="347,79,502,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="498,43,443,81,440,76,495,38"/>
+<area shape="rect" id="Node000010" href="$ObjectView_8h.html" title=" " alt="" coords="553,79,704,105"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="557,38,613,76,609,81,554,42"/>
+<area shape="rect" id="Node000003" href="$DocumentController_8cpp.html" title=" " alt="" coords="5,153,244,178"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="359,111,176,155,175,149,358,106"/>
+<area shape="rect" id="Node000004" href="$EditorController_8cpp.html" title=" " alt="" coords="318,153,531,178"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="427,120,427,152,422,152,422,120"/>
+<area shape="rect" id="Node000005" href="$Document_8h.html" title=" " alt="" coords="726,153,878,178"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="504,105,738,149,737,155,503,111"/>
+<area shape="rect" id="Node000009" href="$EditorView_8cpp.html" title=" " alt="" coords="311,226,471,252"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="361,113,331,130,308,154,304,164,305,174,317,193,339,210,364,223,361,228,336,214,313,197,300,176,299,163,304,151,328,126,358,108"/>
+<area shape="rect" id="Node000006" href="$main_8cpp.html" title=" " alt="" coords="598,226,672,252"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="761,187,665,228,663,223,759,182"/>
+<area shape="rect" id="Node000007" href="$Document_8cpp.html" title=" " alt="" coords="711,226,876,252"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="801,194,798,226,793,226,796,193"/>
+<area shape="rect" id="Node000008" href="$JSONSerializer_8cpp.html" title=" " alt="" coords="900,226,1096,252"/>
+<area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="850,182,965,223,964,228,849,187"/>
+<area shape="rect" id="Node000011" href="$EditorView_8h.html" title=" " alt="" coords="555,153,702,178"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="631,120,631,152,626,152,626,120"/>
+<area shape="rect" id="Node000012" href="$ObjectView_8cpp.html" title=" " alt="" coords="902,153,1067,178"/>
+<area shape="poly" id="edge13_Node000010_Node000012" title=" " alt="" coords="705,106,924,149,923,155,704,111"/>
+<area shape="poly" id="edge11_Node000011_Node000006" title=" " alt="" coords="634,194,637,226,631,226,628,194"/>
+<area shape="poly" id="edge12_Node000011_Node000009" title=" " alt="" coords="574,186,432,228,431,223,573,181"/>
+</map>
