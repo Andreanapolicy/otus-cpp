@@ -3,7 +3,7 @@ name: 'Documentation'
 on: [push]
         
 env:
-  WORK_DIR: ./editor
+  WORK_DIR: ./matrix
 
 jobs:
   build-documentation:
