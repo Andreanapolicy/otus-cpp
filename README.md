@@ -6,4 +6,4 @@ C++ courses from OTUS https://otus.ru/lessons/cpp-professional/
 3. [allocator](/allocator) - Implementing our own STL-compatible allocator and using it in standard containers.
 4. [sfinae](/sfinae) - Implementing the function of printing a conditional IP address.
 5. [editor](/editor) - Implementing the editor app. App should only represent classes and concepts, but not full implemetation.
-5. [matrix](/matrix) - Implementing the infinity sparse matrix using pattern Proxy.
+6. [matrix](/matrix) - Implementing the infinity sparse matrix using pattern Proxy.
