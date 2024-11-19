@@ -7,15 +7,19 @@ namespace
 {
 std::string BLOCK_START_SYMBOL = "{";
 std::string BLOCK_END_SYMBOL = "}";
-std::string LOG_PATH = "logs/";
 
 using NativeStorage = std::vector<std::pair<std::string, std::chrono::system_clock::time_point>>;
+
+std::filesystem::path CreatePath(auto time)
+{
+	return std::filesystem::current_path() / ("bulk" + std::to_string(time) + ".log");
+}
 } // namespace
 
 class PackageController::Storage
 {
 public:
-	Storage(int capacity)
+	Storage(size_t capacity)
 		: m_limitedCache{ capacity }
 	{
 	}
@@ -77,11 +81,11 @@ public:
 
 private:
 	block::Block<std::string> m_limitedCache;
-	block::Block<std::string> m_unlimitedCache{ -1 };
+	block::Block<std::string> m_unlimitedCache{ 0 };
 	size_t m_nestingLevel = 0;
 };
 
-PackageController::PackageController(std::istream& input, std::ostream& defaultOutput, int blockCapacity)
+PackageController::PackageController(std::istream& input, std::ostream& defaultOutput, size_t blockCapacity)
 	: m_input{ input }
 	, m_defaultOutput{ defaultOutput }
 	, m_storage{ std::make_shared<Storage>(blockCapacity) }
@@ -136,27 +140,29 @@ void PackageController::StartProcessCommand()
 
 void PackageController::WriteStoredData()
 {
-	auto writeData = [&](const NativeStorage& data) {
+	auto prepareData = [&](const NativeStorage& data) {
 		std::string output;
-		std::for_each(
-			data.cbegin(),
-			data.cend(),
-			[&output](const std::pair<std::string, std::chrono::system_clock::time_point>& s) {
-				return output.empty() ? s.first : output + "," + s.first;
-			});
-
+		for (const auto& [str, _] : data)
+		{
+			output += output.empty() ? str : ", " + str;
+		}
 		return output;
 	};
 
+	std::filesystem::path path;
+	std::string data;
+
 	if (const auto& limitedCache = m_storage->GetDataFromLimitedCache(); !limitedCache.empty())
 	{
-		logger::Logger::Log(LOG_PATH + std::to_string(limitedCache[0].second.time_since_epoch().count()), writeData(limitedCache));
-		return;
+		path = CreatePath(limitedCache[0].second.time_since_epoch().count());
+		data = prepareData(limitedCache);
 	}
-
-	if (const auto& unlimitedCache = m_storage->GetDataFromUnlimitedCache(); !unlimitedCache.empty())
+	else if (const auto& unlimitedCache = m_storage->GetDataFromUnlimitedCache(); !unlimitedCache.empty())
 	{
-		logger::Logger::Log(LOG_PATH + std::to_string(unlimitedCache[0].second.time_since_epoch().count()), writeData(unlimitedCache));
-		return;
+		path = CreatePath(unlimitedCache[0].second.time_since_epoch().count());
+		data = prepareData(unlimitedCache);
 	}
+		
+	m_defaultOutput << data << std::endl;
+	logger::Logger::Log(path, data);	
 }

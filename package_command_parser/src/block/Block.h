@@ -12,7 +12,7 @@ class Block
 	using Storage = std::vector<std::pair<T, std::chrono::system_clock::time_point>>;
 
 public:
-	Block(int capacity)
+	Block(size_t capacity)
 		: m_capacity{ capacity }
 	{
 	}
@@ -34,7 +34,7 @@ public:
 
 	bool IsFull() const
 	{
-		return m_data.size() >= static_cast<size_t>(m_capacity) + 1;
+		return m_data.size() >= m_capacity;
 	}
 
 	void Reset()
@@ -44,7 +44,7 @@ public:
 
 private:
 	Storage m_data;
-	int m_capacity{ 0 };
+	size_t m_capacity{ 0 };
 };
 
 } // namespace block

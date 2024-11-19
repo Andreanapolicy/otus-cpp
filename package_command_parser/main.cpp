@@ -2,6 +2,7 @@
 #include <exception>
 #include <iostream>
 #include <optional>
+#include <exception>
 
 int main(int argc, char** argv)
 {
@@ -10,10 +11,13 @@ int main(int argc, char** argv)
 		throw std::runtime_error("Wrong input. Example: ./bulk <blocks capacity>");
 	}
 
-	std::optional<int> blockCapacity;
+	std::optional<size_t> blockCapacity;
 	try
 	{
-		blockCapacity = std::make_optional(std::stoi(argv[1]));
+		if (auto value = std::stoi(argv[1]); value > 0)
+		{
+			blockCapacity = std::make_optional(value);
+		}
 	}
 	catch (const std::exception& e)
 	{
@@ -21,7 +25,7 @@ int main(int argc, char** argv)
 
 	if (!blockCapacity.has_value())
 	{
-		throw std::runtime_error("Wrong input. Example: ./bulk <blocks capacity>");
+		throw std::runtime_error("Wrong input. Example: ./bulk <blocks capacity, >0>");
 	}
 
 	PackageController packageController(std::cin, std::cout, *blockCapacity);

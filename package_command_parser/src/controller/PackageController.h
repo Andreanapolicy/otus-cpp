@@ -5,7 +5,7 @@
 class PackageController
 {
 public:
-	PackageController(std::istream& input, std::ostream& defaultOutput, int blockCapacity);
+	PackageController(std::istream& input, std::ostream& defaultOutput, size_t blockCapacity);
 
 	void StartProcessCommand();
 

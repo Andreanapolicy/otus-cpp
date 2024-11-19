@@ -2,28 +2,19 @@
 #include <exception>
 #include <filesystem>
 #include <fstream>
+#include <iostream>
 
 namespace logger
 {
 class Logger
 {
 public:
-	static void Log(std::filesystem::path path, std::string data)
+	static void Log(std::filesystem::path path, const std::string& data)
 	{
-		std::ofstream output;
-		output.open(path);
-		if (!output.is_open())
-		{
-			throw std::runtime_error("cannot create log file");
-		}
+		std::ofstream output{path.c_str()};
 
-		output << std::move(data);
-		output.flush();
-	}
-
-	static void Log(std::ostream& output, std::string data)
-	{
-		output << std::move(data);
+		output << data << std::endl;
+		output.close();
 	}
 };
 } // namespace logger
