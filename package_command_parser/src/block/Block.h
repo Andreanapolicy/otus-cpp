@@ -34,7 +34,7 @@ public:
 
 	bool IsFull() const
 	{
-		return m_data.size() - 1 >= static_cast<size_t>(m_capacity);
+		return m_data.size() >= static_cast<size_t>(m_capacity) + 1;
 	}
 
 	void Reset()

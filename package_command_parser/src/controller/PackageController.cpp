@@ -1,11 +1,13 @@
 #include "PackageController.h"
 #include "../block/Block.h"
+#include "../logger/Logger.h"
 #include <numeric>
 
 namespace
 {
 std::string BLOCK_START_SYMBOL = "{";
 std::string BLOCK_END_SYMBOL = "}";
+std::string LOG_PATH = "logs/";
 
 using NativeStorage = std::vector<std::pair<std::string, std::chrono::system_clock::time_point>>;
 } // namespace
@@ -143,18 +145,18 @@ void PackageController::WriteStoredData()
 				return output.empty() ? s.first : output + "," + s.first;
 			});
 
-		m_defaultOutput << output;
+		return output;
 	};
 
 	if (const auto& limitedCache = m_storage->GetDataFromLimitedCache(); !limitedCache.empty())
 	{
-		writeData(limitedCache);
+		logger::Logger::Log(LOG_PATH + std::to_string(limitedCache[0].second.time_since_epoch().count()), writeData(limitedCache));
 		return;
 	}
 
 	if (const auto& unlimitedCache = m_storage->GetDataFromUnlimitedCache(); !unlimitedCache.empty())
 	{
-		writeData(unlimitedCache);
+		logger::Logger::Log(LOG_PATH + std::to_string(unlimitedCache[0].second.time_since_epoch().count()), writeData(unlimitedCache));
 		return;
 	}
 }
