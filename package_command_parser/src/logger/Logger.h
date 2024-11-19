@@ -2,7 +2,6 @@
 #include <exception>
 #include <filesystem>
 #include <fstream>
-#include <iostream>
 
 namespace logger
 {

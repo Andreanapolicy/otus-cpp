@@ -98,21 +98,6 @@ void PackageController::StartProcessCommand()
 	bool isDynamicBlock = false;
 	while (std::getline(m_input, line))
 	{
-		if (isDynamicBlock)
-		{
-			m_storage->StoreInUnlimitedCache(std::move(line));
-			continue;
-		}
-
-		m_storage->StoreInLimitedCache(std::move(line));
-
-		if (m_storage->IsLimitedCacheFull())
-		{
-			WriteStoredData(); // output limited cache
-			m_storage->ResetLimitedCache();
-			continue;
-		}
-
 		if (line == BLOCK_START_SYMBOL)
 		{
 			isDynamicBlock = true;
@@ -126,15 +111,37 @@ void PackageController::StartProcessCommand()
 			continue;
 		}
 
-		if (line == BLOCK_END_SYMBOL)
+		if (line == BLOCK_END_SYMBOL && isDynamicBlock)
 		{
+			m_storage->DecreaseNesting();
+
 			if (m_storage->GetNestingLevel() == 0)
 			{
 				isDynamicBlock = false;
 				WriteStoredData();
+				m_storage->ResetUnlimitedCache();
 			}
-			m_storage->DecreaseNesting();
+			continue;
 		}
+
+		if (isDynamicBlock)
+		{
+			m_storage->StoreInUnlimitedCache(std::move(line));
+			continue;
+		}
+
+		m_storage->StoreInLimitedCache(std::move(line));
+
+		if (m_storage->IsLimitedCacheFull())
+		{
+			WriteStoredData(); // output limited cache
+			m_storage->ResetLimitedCache();
+		}
+	}
+
+	if (m_storage->GetNestingLevel() == 0)
+	{
+		WriteStoredData();
 	}
 }
 
@@ -162,7 +169,10 @@ void PackageController::WriteStoredData()
 		path = CreatePath(unlimitedCache[0].second.time_since_epoch().count());
 		data = prepareData(unlimitedCache);
 	}
-		
-	m_defaultOutput << data << std::endl;
-	logger::Logger::Log(path, data);	
+
+	if (!data.empty())
+	{
+		m_defaultOutput << data << std::endl;
+		logger::Logger::Log(path, data);
+	}
 }
