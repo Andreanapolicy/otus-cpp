@@ -1,12 +1,12 @@
 #include "PackageController.h"
 #include "../block/Block.h"
 #include "../logger/Logger.h"
-#include <numeric>
 
 namespace
 {
 std::string BLOCK_START_SYMBOL = "{";
 std::string BLOCK_END_SYMBOL = "}";
+std::string DELIMITER = ", ";
 
 using NativeStorage = std::vector<std::pair<std::string, std::chrono::system_clock::time_point>>;
 
@@ -101,13 +101,15 @@ void PackageController::StartProcessCommand()
 		if (line == BLOCK_START_SYMBOL)
 		{
 			isDynamicBlock = true;
-			m_storage->IncreaseNesting();
 
-			if (m_storage->GetNestingLevel() == 1)
+			if (m_storage->GetNestingLevel() == 0)
 			{
-				WriteStoredData(); // output limited cache
+				WriteStoredData();
 				m_storage->ResetLimitedCache();
 			}
+
+			m_storage->IncreaseNesting();
+
 			continue;
 		}
 
@@ -134,7 +136,7 @@ void PackageController::StartProcessCommand()
 
 		if (m_storage->IsLimitedCacheFull())
 		{
-			WriteStoredData(); // output limited cache
+			WriteStoredData();
 			m_storage->ResetLimitedCache();
 		}
 	}
@@ -151,7 +153,7 @@ void PackageController::WriteStoredData()
 		std::string output;
 		for (const auto& [str, _] : data)
 		{
-			output += output.empty() ? str : ", " + str;
+			output += output.empty() ? str : DELIMITER + str;
 		}
 		return output;
 	};

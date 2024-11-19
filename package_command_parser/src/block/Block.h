@@ -1,6 +1,5 @@
 #pragma once
 #include <chrono>
-#include <concepts>
 #include <exception>
 #include <vector>
 
@@ -44,7 +43,7 @@ public:
 
 private:
 	Storage m_data;
-	size_t m_capacity{ 0 };
+	size_t m_capacity;
 };
 
 } // namespace block

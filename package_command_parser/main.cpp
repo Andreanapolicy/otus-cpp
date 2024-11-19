@@ -2,7 +2,6 @@
 #include <exception>
 #include <iostream>
 #include <optional>
-#include <exception>
 
 int main(int argc, char** argv)
 {
@@ -25,7 +24,7 @@ int main(int argc, char** argv)
 
 	if (!blockCapacity.has_value())
 	{
-		throw std::runtime_error("Wrong input. Example: ./bulk <blocks capacity, >0>");
+		throw std::runtime_error("Wrong input. Example: ./bulk <blocks capacity, `>0` >");
 	}
 
 	PackageController packageController(std::cin, std::cout, *blockCapacity);
