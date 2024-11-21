@@ -8,3 +8,4 @@ C++ courses from OTUS https://otus.ru/lessons/cpp-professional/
 5. [editor](/editor) - Implementing the editor app. App should only represent classes and concepts, but not full implemetation.
 6. [matrix](/matrix) - Implementing the infinity sparse matrix using pattern Proxy.
 7. [package_command_parser](/package_command_parser) - Creating util to parse and log commands.
+7. [duplicate_file_finder](/duplicate_file_finder) - Create program to find duplicates files, using boost best-practices

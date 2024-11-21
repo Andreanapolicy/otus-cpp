@@ -3,7 +3,7 @@ name: 'Documentation'
 on: [push]
         
 env:
-  WORK_DIR: ./package_command_parser
+  WORK_DIR: ./duplicate_file_finder
 
 jobs:
   build-documentation:
