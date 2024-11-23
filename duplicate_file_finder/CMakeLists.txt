@@ -10,7 +10,7 @@ add_executable(bayan main.cpp)
 file(GLOB_RECURSE ENDF6_SRC ${PROJECT_SOURCE_DIR} src/*.h src/*.cpp)
 
 add_library(bayan_lib ${ENDF6_SRC})
-find_package(Boost COMPONENTS program_options regex filesystem REQUIRED )
+find_package(Boost 1.74.0 COMPONENTS program_options regex filesystem REQUIRED )
 include_directories(${Boost_INCLUDE_DIR})
 
 target_link_libraries(bayan bayan_lib
