@@ -40,7 +40,6 @@ public:
 	Impl(InputData data)
 		: m_data{ std::move(data) }
 	{
-		std::cout << "m_buffer.reserve(m_data.GetBufferSize());" << std::endl;
 	}
 
 	void Find()
