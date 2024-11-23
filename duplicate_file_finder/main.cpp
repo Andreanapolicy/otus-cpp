@@ -1,10 +1,15 @@
-#include "src/InputData.h"
+#include "src/InputData/InputData.h"
+#include "src/DuplicateFileFinder/DuplicateFileFinder.h"
 #include <iostream>
 
 int main(int argc, char** argv)
 {
 	InputData data(argc, argv);
 
-	std::cout << data.ScanAllDirs() << std::endl;
+	std::cout << "data.ScanAllDirs()" << std::endl;
+	
+	DuplicateFileFinder finder(std::move(data));
+	finder.Find();
+
 	return 0;
 }
