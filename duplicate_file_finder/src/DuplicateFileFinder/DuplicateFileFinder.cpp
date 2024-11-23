@@ -86,14 +86,14 @@ public:
 		const auto bufferSize = m_data.GetBufferSize();
 		size_t bufferBlocksCount = first.size / bufferSize;
 
-		if (first.size % bufferBlocksCount)
+		if (first.size % bufferSize)
 		{
 			bufferBlocksCount++;
 		}
 
 		for (size_t bufferBlockNumber = 0; bufferBlockNumber < bufferBlocksCount; bufferBlockNumber++)
 		{
-			if (bufferBlockNumber <= first.hash.size())
+			if (bufferBlockNumber == first.hash.size())
 			{
 				CalculateFileHash(first, bufferBlockNumber);
 			}
