@@ -10,12 +10,20 @@ add_executable(bayan main.cpp)
 file(GLOB_RECURSE ENDF6_SRC ${PROJECT_SOURCE_DIR} src/*.h src/*.cpp)
 
 add_library(bayan_lib ${ENDF6_SRC})
+find_package(Boost COMPONENTS REQUIRED)
 
-target_link_libraries(bayan bayan_lib)
+target_link_libraries(bayan bayan_lib
+    ${Boost_LIBRARIES}
+)
 
 set_target_properties(bayan bayan_lib PROPERTIES
     CXX_STANDARD 20
     CXX_STANDARD_REQUIRED ON
+)
+
+set_target_properties(bayan_lib PROPERTIES
+COMPILE_DEFINITIONS BOOST_TEST_DYN_LINK
+INCLUDE_DIRECTORIES ${Boost_INCLUDE_DIR}
 )
 
 target_include_directories(bayan
