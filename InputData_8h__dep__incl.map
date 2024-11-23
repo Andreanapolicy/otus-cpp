@@ -1,0 +1,12 @@
+<map id="src/InputData/InputData.h" name="src/InputData/InputData.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="72,5,241,31"/>
+<area shape="rect" id="Node000002" href="$main_8cpp.html" title=" " alt="" coords="5,175,79,201"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="116,41,91,58,70,81,57,104,50,130,45,175,39,174,45,129,52,103,65,77,87,54,113,36"/>
+<area shape="rect" id="Node000003" href="$DuplicateFileFinder_8h.html" title=" " alt="" coords="80,79,234,120"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="159,46,159,79,154,79,154,46"/>
+<area shape="rect" id="Node000005" href="$InputData_8cpp.html" title=" " alt="" coords="258,86,442,112"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="201,35,322,84,319,88,199,40"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="121,131,59,177,56,173,117,127"/>
+<area shape="rect" id="Node000004" href="$DuplicateFileFinder_8cpp.html" title=" " alt="" coords="103,168,264,208"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="170,134,180,166,175,168,165,135"/>
+</map>
