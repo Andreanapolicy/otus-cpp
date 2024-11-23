@@ -48,36 +48,20 @@ public:
 		{
 			m_excludedScanDirs = vm["exclude-dirs"].as<std::vector<std::string>>();
 		}
-		else
-		{
-			throw ParseException("exclude-dirs is required. See --help");
-		}
 
 		if (vm.count("scan-all-dirs"))
 		{
 			m_scanAllDirs = vm["scan-all-dirs"].as<size_t>();
-		}
-		else
-		{
-			throw ParseException("scan-all-dirs is required. See --help");
 		}
 
 		if (vm.count("min-file-size"))
 		{
 			m_minFileSize = vm["min-file-size"].as<size_t>();
 		}
-		else
-		{
-			throw ParseException("min-file-size is required. See --help");
-		}
 
 		if (vm.count("file-masks"))
 		{
 			m_fileMasks = vm["file-masks"].as<std::vector<std::string>>();
-		}
-		else
-		{
-			throw ParseException("file-masks is required. See --help");
 		}
 
 		if (vm.count("buffer-size"))
@@ -91,13 +75,13 @@ public:
 
 		if (vm.count("hash"))
 		{
-			if (const auto hash = vm["hash"].as<std::string>(); hash == "mda5" || hash == "crc32")
+			if (const auto hash = vm["hash"].as<std::string>(); hash == "md5" || hash == "crc32")
 			{
                 m_hash = hash == "mda5" ? HashAlgorithm::MD5 : HashAlgorithm::CRC32;
 			}
 			else
 			{
-				throw ParseException("hash must be one of [mda5, crc32]");
+				throw ParseException("hash must be one of [md5, crc32]");
 			}
 		}
 		else

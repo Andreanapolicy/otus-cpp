@@ -14,11 +14,6 @@ class InputData
 public:
 	InputData(int argc, char** argv);
 
-	InputData(const InputData&) = delete;
-	InputData operator=(const InputData&) = delete;
-	InputData(InputData&&) = delete;
-	InputData operator=(InputData&&) = delete;
-
 	const std::vector<std::string>& GetScanDirs() const;
 	const std::vector<std::string>& GetExcludeScanDirs() const;
 	bool ScanAllDirs() const;
