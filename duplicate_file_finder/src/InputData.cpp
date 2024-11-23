@@ -18,10 +18,10 @@ public:
             ("help", "produce help message")
             ("include-dirs,i", po::value<std::vector<std::string>>(), "Include dirs to scan")
             ("exclude-dirs,e", po::value<std::vector<std::string>>(), "Exclude dirs to scan")
-            ("scan-all-dirs,a", po::value<int>()->default_value(0), "Set 1 if scan all dirs recursively")
-            ("min-file-size,s", po::value<int>()->default_value(1), "Min file size to process")
+            ("scan-all-dirs,a", po::value<size_t>()->default_value(0), "Set 1 if scan all dirs recursively")
+            ("min-file-size,s", po::value<size_t>()->default_value(1), "Min file size to process")
             ("file-masks,f", po::value<std::vector<std::string>>(), "File masks to scan")
-            ("buffer-size,b", po::value<int>(), "Buffer size to process file")
+            ("buffer-size,b", po::value<size_t>(), "Buffer size to process file")
             ("hash,hs", po::value<std::string>(), "Hash: md5 or crc32");
 		// clang-format on
 
@@ -43,6 +43,67 @@ public:
 		{
 			throw ParseException("include-dirs is required. See --help");
 		}
+
+		if (vm.count("exclude-dirs"))
+		{
+			m_excludedScanDirs = vm["exclude-dirs"].as<std::vector<std::string>>();
+		}
+		else
+		{
+			throw ParseException("exclude-dirs is required. See --help");
+		}
+
+		if (vm.count("scan-all-dirs"))
+		{
+			m_scanAllDirs = vm["scan-all-dirs"].as<size_t>();
+		}
+		else
+		{
+			throw ParseException("scan-all-dirs is required. See --help");
+		}
+
+		if (vm.count("min-file-size"))
+		{
+			m_minFileSize = vm["min-file-size"].as<size_t>();
+		}
+		else
+		{
+			throw ParseException("min-file-size is required. See --help");
+		}
+
+		if (vm.count("file-masks"))
+		{
+			m_fileMasks = vm["file-masks"].as<std::vector<std::string>>();
+		}
+		else
+		{
+			throw ParseException("file-masks is required. See --help");
+		}
+
+		if (vm.count("buffer-size"))
+		{
+			m_bufferSize = vm["buffer-size"].as<size_t>();
+		}
+		else
+		{
+			throw ParseException("buffer-size is required. See --help");
+		}
+
+		if (vm.count("hash"))
+		{
+			if (const auto hash = vm["hash"].as<std::string>(); hash == "mda5" || hash == "crc32")
+			{
+                m_hash = hash == "mda5" ? HashAlgorithm::MD5 : HashAlgorithm::CRC32;
+			}
+			else
+			{
+				throw ParseException("hash must be one of [mda5, crc32]");
+			}
+		}
+		else
+		{
+			throw ParseException("buffer-size is required. See --help");
+		}
 	}
 
 	const std::vector<std::string>& GetScanDirs() const
@@ -56,29 +117,29 @@ public:
 	}
 
 	bool ScanAllDirs() const
-    {
-        return m_scanAllDirs;
-    }
+	{
+		return m_scanAllDirs;
+	}
 
 	size_t GetMinFileSize() const
-    {
-        return m_minFileSize;
-    }
+	{
+		return m_minFileSize;
+	}
 
 	const std::vector<std::string>& GetFileMasks() const
-    {
-        return m_fileMasks;
-    }
+	{
+		return m_fileMasks;
+	}
 
 	size_t GetBufferSize() const
-    {
-        return m_bufferSize;
-    }
+	{
+		return m_bufferSize;
+	}
 
 	HashAlgorithm GetHashAlgorithm() const
-    {
-        return m_hash;
-    }
+	{
+		return m_hash;
+	}
 
 private:
 	std::vector<std::string> m_scanDirs{};
