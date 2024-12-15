@@ -3,7 +3,7 @@ name: 'Documentation'
 on: [push]
         
 env:
-  WORK_DIR: ./duplicate_file_finder
+  WORK_DIR: ./multitreading
 
 jobs:
   build-documentation:
